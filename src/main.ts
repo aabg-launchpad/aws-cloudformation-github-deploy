@@ -55,7 +55,7 @@ export async function run(): Promise<void> {
 
     if (parameterOverrides) {
       params.Parameters = [
-        ...parameterOverrides.split(',').map(parameter => {
+        ...parameterOverrides.split(';').map(parameter => {
           const [key, value] = parameter.trim().split('=');
           return {
             ParameterKey: key,
@@ -64,6 +64,9 @@ export async function run(): Promise<void> {
         })
       ];
     }
+
+    console.log('Printing params');
+    console.log(params);
 
     core.setOutput(
       'stack-id',
